@@ -66,16 +66,27 @@ Currently the following attributes are available:
 Further attributes that could be added in the future:
 
 - Percentage working
-- Numer of children aged 0-6
-- Numer of children aged 7-15
-- Numer of children aged 16-19
+- Number of children aged 0-6
+- Number of children aged 7-15
+- Number of children aged 16-19
 - self-employed
 
 ### Model
-We first calculated the average numbers for the population (for age bands, gender and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more people aged 25-44 than in the average cell and there are 40% less people working in IT compared to the average cell. 
+We first calculated the average numbers for the population (for age bands, gender and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 151% more people aged 25-44 than in the average cell. Then, we took the percentile for this to get values from 0 to 100 for all the features.
+
+To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features. With this we can calculate a score, how similar a person is to a certain cell's population and employees.
 
 
-To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features.
+## Limitations
+We are assuming that people work and live in the same location.
+
+
+## Potential for further improvement
+...
+
+
+
+
 
 
 
