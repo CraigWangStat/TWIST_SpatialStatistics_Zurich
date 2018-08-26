@@ -32,6 +32,7 @@ dashboardPage(
               fluidRow(
                 column(width = 4,
                        numericInput("var_age", "Age", min = 1, max = 100, value=30, step = 1),
+                       checkboxInput("var_child", "Do you have children?", value = FALSE),
                        selectInput("var_gen", label = "Gender", choices = c("Female","Male"," "), selected = " "),
                        selectInput("var_nat", label = "Nationality", 
                                    choices = c("Swiss","Foreign"," "), selected = " "),

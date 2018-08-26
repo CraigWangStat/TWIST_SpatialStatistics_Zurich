@@ -29,6 +29,7 @@ function(input, output, session) {
               sapply(c("ht_per","widl_per","handel_per","finanz_per","freiedl_per",
                        "gewerbe_per","gesundheit_per","bau_per","sonstdl_per","inform_per",    
                        "unterricht_per","verkehr_per","uebrige_per"), function(x) x == input$var_work)) # work
+    if(input$var_child){user[1:2] <- 0.5}
     
     dat$score <- percentile(calc_score(dat[,3:27], as.vector(user)))
     coordinates(dat) <- ~ ha_x + ha_y
@@ -46,7 +47,7 @@ function(input, output, session) {
     pop_layers2 <- projectRaster(pop_layers, crs="+init=epsg:4326 +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +units=m +no_defs")
     
     tm <- tm_shape(pop_layers2) +
-      tm_raster("score", palette = "Oranges", title = "Score", style = "fixed", breaks = seq(0,100,by = 10), alpha = 0.6) 
+      tm_raster("score", palette = "Oranges", title = "Score", style = "fixed", breaks = seq(0,100,by = 10), alpha = 0.6, interpolate = TRUE, stretch.palette = TRUE) 
     if (input$add_varos){
       req(input$var_os)
       tm <- tm + qtm(st_geometry(osmdata_sf(add_osm_feature(opq = opq(bbox = c(8.35768, 47.15944,8.984941,47.694472)), key = 'amenity', value = input$var_os))$osm_points),
