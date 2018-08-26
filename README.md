@@ -33,12 +33,12 @@ Available attributes are:
 
 | Attribute name                        | Description | 
 | -------------                         |-------------| 
-| anz_vzae = Vollzeitäquivalente        | total (fte) |
-| anz_vzae_w = Vollzeitäquivalte Frauen | total female (fte) |
+| anz_vzae = Vollzeitäquivalente        | Total (fte) |
+| anz_vzae_w = Vollzeitäquivalte Frauen | Total female (fte) |
 | anz_besch = Anz. Beschäftigte	        | Nr. of people employed |
 | anz_ast	= Anz. Betriebe               | Nr. of businesses  | 
 | ht = High Tech                        | High Tech Industry (fte) |
-| widl = wissensintensive Dienstl.      | knowledge intensive services (fte) |
+| widl = wissensintensive Dienstl.      | Knowledge intensive services (fte) |
 | handel                                | Trade and Commerce (fte) |
 | finanz                                | Finance (fte) |
 | freiedl = Freiberufl. Dienstl.        | Self-employed services (fte) |
@@ -55,7 +55,7 @@ fte = full time equivalent
 
 ## Method
 
-# The R shiny UI
+### The R shiny UI
 We created an R shiny interface where the user can input his profile.
 Currently the following attributes are available:
 
@@ -71,9 +71,11 @@ Further attributes that could be added in the future:
 - Numer of children aged 16-19
 - self-employed
 
-# Model
-We first calculated the average numbers of population (for age bands, sex and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more people aged 25-44 than in the average cell and there are 40% less people working in IT compared to the average cell.
+### Model
+We first calculated the average numbers for the population (for age bands, gender and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more people aged 25-44 than in the average cell and there are 40% less people working in IT compared to the average cell. 
+
 
 To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features.
+
 
 
