@@ -88,9 +88,10 @@ To calculate the similarity of a profile to a cell's population and employment d
 # Short data story
 Compare where young and old people in Zurch live:
 
+25 year old people:
 ![Population aged 25](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/25.png)
 
-
+80 year old people:
 ![Population aged 80](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/80P.png)
 
 
