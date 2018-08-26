@@ -6,7 +6,7 @@ load("./data/Criteria_per_Cell.RData")
 # Define UI for application that draws a histogram
 dashboardPage(
   dashboardHeader(
-    title = "Dive into Kanton Zurich",
+    title = "Dive into Zurich",
     tags$li(a(h4("Thanks to data Source:"),
               style = "padding-top:5px; padding-bottom:5px;"),
             class = "dropdown"),
