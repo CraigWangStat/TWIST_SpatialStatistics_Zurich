@@ -76,6 +76,7 @@ We first calculated the average numbers for the population (for age bands, gende
 
 To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features. With this we can calculate a score, how similar a person is to a certain cell's population and employees.
 
+![Population Visualization](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/UI.png)
 
 ## Limitations
 We are assuming that people work and live in the same location.
