@@ -1,6 +1,6 @@
 # TWIST_SpatialStatistics_Zurich
 
-A personalized dis-similarity measure with local residents in Kanton Zürich
+A personalized dis-similarity map with local residents in Kanton Zürich. https://craigwang.shinyapps.io/twist/
 
 ## Data
 For this project we combined two spacial data sets from the Canton of Zurich with raster tiles of resolution 100m x 100m. 
