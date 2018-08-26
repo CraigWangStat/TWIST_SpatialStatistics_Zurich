@@ -83,7 +83,16 @@ We first calculated the average numbers for the population (for age bands, gende
 
 To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features. With this we can calculate a score, how similar a person is to a certain cell's population and employees.
 
-![Population Visualization](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/UI.png)
+![The final product](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/UI.png)
+
+# Short data story
+Compare where young and old people in Zurch live:
+
+![Population aged 25](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/25.png)
+
+
+![Population aged 80](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/80P.png)
+
 
 ## Limitations
 We are assuming that people work and live in the same location.
