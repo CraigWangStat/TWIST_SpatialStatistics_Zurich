@@ -5,7 +5,7 @@ A personalized dis-similarity measure with local residents in Kanton Zürich
 ## Data:
 For this project we combined two spacial data sets from the Canton of Zurich with raster tiles of resolution 100m x 100m. 
 
-The first data set contains population data
+The first data set contains population data:
 
 - total population
 - population aged 0-6
@@ -21,27 +21,24 @@ The first data set contains population data
 - population with Swiss Citizenships
 - population with Foreign Citizenships
 
-The second data set contains employment data
+The second data set contains employment data:
 
-- number of people with employment in the the raster tile
-- number of people employed in
-
-| Attribute name     | Description    | 
-| ------------- |-------------| 
-| anz_vzae = Vollzeitäquivalente | total full time equivalent (fte) |
+| Attribute name                        | Description | 
+| -------------                         |-------------| 
+| anz_vzae = Vollzeitäquivalente        | total full time equivalent (fte) |
 | anz_vzae_w = Vollzeitäquivalte Frauen | total female fte |
-| anz_besch = Anz. Beschäftigte	| Nr. of people employed |
-| anz_ast	= Anz. Betriebe ??? | Nr. of businesses ??? | 
-| ht | fte High Tech Industry |
-| widl = wissensintensive dienstl.| fte knowledge intensive services |
-| handel | fte Trade and Commerce |
-| finanz | fte Finance |
-| freiedl | fte self-employed services |
-| gewerbe	| fte Industry |
-| gesundheit | fte Socaial and Healthcare |
-| bau	| fte Construction |
-| sonstdl	| fte Other Services |
-| inform | fte Information technology |
-| unterricht | fte Education |
-| verkehr	| fte Traffic  and Logistics |
-| uebrige	| Others |
+| anz_besch = Anz. Beschäftigte	        | Nr. of people employed |
+| anz_ast	= Anz. Betriebe ???           | Nr. of businesses ??? | 
+| ht                                    | fte High Tech Industry |
+| widl = wissensintensive dienstl.      | fte knowledge intensive services |
+| handel                                | fte Trade and Commerce |
+| finanz                                | fte Finance |
+| freiedl                               | fte self-employed services |
+| gewerbe                             	| fte Industry |
+| gesundheit                            | fte Socaial and Healthcare |
+| bau	                                  | fte Construction |
+| sonstdl                               | fte Other Services |
+| inform                                | fte Information technology |
+| unterricht                            | fte Education |
+| verkehr	                              | fte Traffic  and Logistics |
+| uebrige                              	| Others |
