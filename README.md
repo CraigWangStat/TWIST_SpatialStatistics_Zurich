@@ -53,6 +53,11 @@ Available attributes are:
 
 fte = full time equivalent
 
+## Idea
+We want to help people who are moving to Zurich to find locations where people most similar to him/her live.
+
+Second, the user might want to know what amenities there are in her/his future neighborhood. This is why, certain types of POI from Open Street Map can be displayed on the map.
+
 ## Method
 
 ### The R shiny UI
@@ -71,6 +76,8 @@ Further attributes that could be added in the future:
 - Number of children aged 16-19
 - self-employed
 
+![UI to inuput your profile](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/Preferences.png)
+
 ### Model
 We first calculated the average numbers for the population (for age bands, gender and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 151% more people aged 25-44 than in the average cell. Then, we took the percentile for this to get values from 0 to 100 for all the features.
 
@@ -83,7 +90,13 @@ We are assuming that people work and live in the same location.
 
 
 ## Potential for further improvement
-...
+Add tickboxes that allow to show more POI on the map, e.g. restaurants, Kindergardens, parking lots. (At the moment only one type of POI can be displayed.)
+
+Would be interesting to filter on you preferences for POI's around you, e.g. I'd like to have a Kindergarden in my Neighborhood.
+
+Could be enriched with data form Mapnificientn (this app lets you find locations that can be reached within a specified time).
+
+
 
 
 
