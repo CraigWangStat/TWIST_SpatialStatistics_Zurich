@@ -5,8 +5,9 @@ account: craigwang
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 408462
-bundleId: 1553546
+bundleId: 1554529
 url: https://craigwang.shinyapps.io/twist/
-when: 1535205058.91754
+when: 1535285769.91582
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: data.RData|data/data.RData
