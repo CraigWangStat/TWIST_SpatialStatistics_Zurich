@@ -81,7 +81,7 @@ data <- data %>%
 
 
 # select
-output %>% data %>%
+output <- data %>%
   select(
     ha_x,  ha_y,
     J_0_6_per, J_7_15_per, J_16_19_per, J_20_24_per, J_25_44_per, J_45_64_per, J_65_79_per, J_80P_per, 
@@ -92,3 +92,14 @@ output %>% data %>%
 
 save(output, file = "Criteria_per_Cell.RData")
 
+
+
+# 
+# calc_score <- function(data, profile) {
+#   matrix <- as.matrix(data[,-(1:2)])
+#   matrix[is.na(matrix)] <- -100
+#   score <- matrix %*% profile
+#   return(cbind(data, score))
+# } 
+# 
+# res <- calc_score(output, a)
