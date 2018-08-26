@@ -2,10 +2,10 @@
 
 A personalized dis-similarity measure with local residents in Kanton Zürich
 
-## Data:
+## Data
 For this project we combined two spacial data sets from the Canton of Zurich with raster tiles of resolution 100m x 100m. 
 
-The first data set contains population data:
+### The first data set contains population data:
 
 - total population
 - population aged 0-6
@@ -21,14 +21,14 @@ The first data set contains population data:
 - population with Swiss Citizenships
 - population with Foreign Citizenships
 
-The second data set contains employment data:
+### The second data set contains employment data
 
 | Attribute name                        | Description | 
 | -------------                         |-------------| 
 | anz_vzae = Vollzeitäquivalente        | total full time equivalent (fte) |
 | anz_vzae_w = Vollzeitäquivalte Frauen | total female fte |
 | anz_besch = Anz. Beschäftigte	        | Nr. of people employed |
-| anz_ast	= Anz. Betriebe ???           | Nr. of businesses ??? | 
+| anz_ast	= Anz. Betriebe               | Nr. of businesses  | 
 | ht                                    | fte High Tech Industry |
 | widl = wissensintensive dienstl.      | fte knowledge intensive services |
 | handel                                | fte Trade and Commerce |
@@ -42,3 +42,19 @@ The second data set contains employment data:
 | unterricht                            | fte Education |
 | verkehr	                              | fte Traffic  and Logistics |
 | uebrige                              	| Others |
+
+## Method
+We first calculated the average numbers of population and the average number of employments in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more childeren aged 0-6 than in the average cell.
+
+We then set up a R shiny interface where the user can input his profile.
+
+- Age
+- Gender
+- Employment sector
+- Percentage working
+- Numer of children aged 0-6
+- Numer of children aged 7-15
+- Numer of children aged 16-19
+- self-employed
+
+
