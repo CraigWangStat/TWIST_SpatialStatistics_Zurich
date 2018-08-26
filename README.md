@@ -7,7 +7,7 @@ For this project we combined two spacial data sets from the Canton of Zurich wit
 
 ### The first data set contains population data
 
-![Employment Visualization](Employees.png)
+![Employment Visualization](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/Employees.png)
 
 Available attributes are:
 
@@ -27,7 +27,7 @@ Available attributes are:
 
 ### The second data set contains employment data
 
-![Population Visualization](Population.png)
+![Population Visualization](https://raw.githubusercontent.com/CraigWangUZH/TWIST_SpatialStatistics_Zurich/master/Population.png)
 
 Available attributes are:
 
