@@ -5,7 +5,11 @@ A personalized dis-similarity measure with local residents in Kanton Zürich
 ## Data
 For this project we combined two spacial data sets from the Canton of Zurich with raster tiles of resolution 100m x 100m. 
 
-### The first data set contains population data:
+### The first data set contains population data
+
+![Employment Visualization](Employees.png)
+
+Available attributes are:
 
 - total population
 - population aged 0-6
@@ -23,38 +27,53 @@ For this project we combined two spacial data sets from the Canton of Zurich wit
 
 ### The second data set contains employment data
 
+![Population Visualization](Population.png)
+
+Available attributes are:
+
 | Attribute name                        | Description | 
 | -------------                         |-------------| 
-| anz_vzae = Vollzeitäquivalente        | total full time equivalent (fte) |
-| anz_vzae_w = Vollzeitäquivalte Frauen | total female fte |
+| anz_vzae = Vollzeitäquivalente        | total (fte) |
+| anz_vzae_w = Vollzeitäquivalte Frauen | total female (fte) |
 | anz_besch = Anz. Beschäftigte	        | Nr. of people employed |
 | anz_ast	= Anz. Betriebe               | Nr. of businesses  | 
-| ht                                    | fte High Tech Industry |
-| widl = wissensintensive dienstl.      | fte knowledge intensive services |
-| handel                                | fte Trade and Commerce |
-| finanz                                | fte Finance |
-| freiedl                               | fte self-employed services |
-| gewerbe                             	| fte Industry |
-| gesundheit                            | fte Socaial and Healthcare |
-| bau	                                  | fte Construction |
-| sonstdl                               | fte Other Services |
-| inform                                | fte Information technology |
-| unterricht                            | fte Education |
-| verkehr	                              | fte Traffic  and Logistics |
-| uebrige                              	| Others |
+| ht = High Tech                        | High Tech Industry (fte) |
+| widl = wissensintensive Dienstl.      | knowledge intensive services (fte) |
+| handel                                | Trade and Commerce (fte) |
+| finanz                                | Finance (fte) |
+| freiedl = Freiberufl. Dienstl.        | Self-employed services (fte) |
+| gewerbe                             	| Industry (fte) |
+| gesundheit                            | Socaial and Healthcare (fte) |
+| bau	                                  | Construction (fte) |
+| sonstdl                               | Other Services (fte) |
+| inform                                | Information technology (fte) |
+| unterricht                            | Education (fte) |
+| verkehr	                              | Traffic  and Logistics (fte) |
+| uebrige                              	| Others (fte) |
+
+fte = full time equivalent
 
 ## Method
-We first calculated the average numbers of population and the average number of employments in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more childeren aged 0-6 than in the average cell.
 
-We then set up a R shiny interface where the user can input his profile.
+# The R shiny UI
+We created an R shiny interface where the user can input his profile.
+Currently the following attributes are available:
 
-- Age
-- Gender
-- Employment sector
+- Age (enter number)
+- Gender (choose m or f)
+- Employment sector (chose from dropdown)
+
+Further attributes that could be added in the future:
+
 - Percentage working
 - Numer of children aged 0-6
 - Numer of children aged 7-15
 - Numer of children aged 16-19
 - self-employed
+
+# Model
+We first calculated the average numbers of population (for age bands, sex and citizenship) and the average number of employments (per sector) in each cell. Then, we compared each cell to this average. For example, you then get to know that in a particular cell there are 51% more people aged 25-44 than in the average cell and there are 40% less people working in IT compared to the average cell.
+
+To calculate the similarity of a profile to a cell's population and employment data, we multiply the percentile with the applicable profile features.
 
 
