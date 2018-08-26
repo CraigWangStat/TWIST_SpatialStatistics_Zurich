@@ -2,6 +2,7 @@ library(shinydashboard)
 library(shiny)
 library(leaflet)
 library(ggplot2)
+
 load("./data/Criteria_per_Cell.RData")
 # Define UI for application that draws a histogram
 dashboardPage(
@@ -16,17 +17,9 @@ dashboardPage(
             class = "dropdown")
   ),
   
-  dashboardSidebar(
-    sidebarMenu(
-      menuItem("Application", tabName = "vis", icon = icon("dashboard")),
-      menuItem("Future", icon = icon("th"), tabName = "widgets",
-               badgeLabel = "Don't hit me", badgeColor = "green")
-    )
-  ),
+  dashboardSidebar(disable = TRUE),
   
   dashboardBody(
-    tabItems(
-      tabItem(tabName = "vis",
               h4("Where should you live in canton Zurich?"),
               h4("Do you want to live in an area where the inhabitants are similar (or maybe dissimilar) to you? With this app, you can find these areas!"),
               fluidRow(
@@ -52,30 +45,6 @@ Construct your profile by setting a value for one or several criteria of interes
                        leafletOutput("visplot", width = "80%", height = 600)
                 )
               )
-      ),
-      
-      tabItem(tabName = "widgets",
-              h2("Widgets tab content"),
-              # Sidebar with a slider input for number of bins 
-              fluidRow(
-                column(width = 4,
-                       sliderInput("cri", "Criteria1", min = 0, max = 10, value=5, step = 1, 
-                                   sep = "", animate = FALSE),
-                       sliderInput("cri", "Criteria1", min = 0, max = 10, value=5, step = 1, 
-                                   sep = "", animate = FALSE),
-                       sliderInput("cri", "Criteria1", min = 0, max = 10, value=5, step = 1, 
-                                   sep = "", animate = FALSE),
-                       actionButton("contact"," Contact Programmer", icon = icon("address-card"), 
-                                    class = "btn-primary",style = "color: white;",
-                                    onclick ="window.open('https://craigwanguzh.github.io', '_blank')")
-                ),
-                column(width = 8,
-                       leafletOutput("mymap", width = "80%", height = 600)
-                )
-              )
-              
-      )
-    )
   )
 )
 
