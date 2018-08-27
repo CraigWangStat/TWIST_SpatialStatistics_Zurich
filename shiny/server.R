@@ -23,12 +23,21 @@ function(input, output, session) {
     ))
   })
   
+  observeEvent(input$reset, {
+    updateSelectInput(session, "var_gen", selected = " ")
+    updateSelectInput(session, "var_nat", selected = " ")
+    updateSelectInput(session, "var_work", selected = " ")
+    updateCheckboxInput(session, "add_varos", value = FALSE)
+    updateCheckboxInput(session, "var_child", value = FALSE)
+    updateNumericInput(session, "var_age", value = 40)
+  })
+  
   
   output$out_var_os <- renderUI({
     if (input$add_varos){
       selectInput("var_os", label = "Points of Interest",
-                  choices = c("bar","kindergarten","pub","nightclub","cafe","restaurant","school","college",
-                              "bus_station","parking","atm"), selected = "bars")} else {}
+                  choices = c("bar","kindergarten","nightclub","cafe","restaurant","school",
+                              "bus_station","atm"), selected = "bar")} else {}
   })
   
   output$visplot <- renderLeaflet(leaflet() %>%
