@@ -62,6 +62,7 @@ function(input, output, session) {
     leafletProxy("visplot") %>%
       clearShapes() %>%
       clearControls() %>%
+      clearMarkers() %>%
       addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
       addLegend(pal = pal, values = pop_layers2@data@values,  title = "Score")
     
@@ -72,6 +73,7 @@ function(input, output, session) {
       leafletProxy("visplot") %>%
         clearShapes() %>%
         clearControls() %>%
+        clearMarkers() %>%
         addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
         addMarkers(lng = poi@coords[,1], lat = poi@coords[,2], icon = list(
           iconUrl = "https://image.flaticon.com/icons/svg/15/15520.svg", iconSize = c(20, 20))) %>%

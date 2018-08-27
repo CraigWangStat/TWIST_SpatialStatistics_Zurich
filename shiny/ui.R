@@ -29,7 +29,7 @@ dashboardPage(
                        selectInput("var_gen", label = "Gender", choices = c("Female","Male"," "), selected = " "),
                        selectInput("var_nat", label = "Nationality", 
                                    choices = c("Swiss","Foreign"," "), selected = " "),
-                       selectInput("var_work", label = "Working Section", 
+                       selectInput("var_work", label = "Working Sector", 
                                    choices = c(colnames(dat)[15:25], " "), selected = " "),
                        checkboxInput("add_varos","Add points of interest", value = FALSE),
                        uiOutput("out_var_os"),
