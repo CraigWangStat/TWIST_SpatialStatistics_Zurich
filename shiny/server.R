@@ -24,14 +24,13 @@ function(input, output, session) {
   })
   
   observeEvent(input$reset, {
-    updateSelectInput(session, "var_gen", selected = " ")
-    updateSelectInput(session, "var_nat", selected = " ")
-    updateSelectInput(session, "var_work", selected = " ")
+    updateSelectInput(session, "var_gen", selected = "")
+    updateSelectInput(session, "var_nat", selected = "")
+    updateSelectInput(session, "var_work", selected = "")
     updateCheckboxInput(session, "add_varos", value = FALSE)
     updateCheckboxInput(session, "var_child", value = FALSE)
     updateNumericInput(session, "var_age", value = 40)
   })
-  
   
   output$out_var_os <- renderUI({
     if (input$add_varos){
@@ -68,14 +67,14 @@ function(input, output, session) {
     
     pal <-  colorNumeric("OrRd", pop_layers2@data@values, na.color = "transparent")
     
-    leafletProxy("visplot") %>%
-      clearShapes() %>%
-      clearControls() %>%
-      clearMarkers() %>%
-      addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
-      addLegend(pal = pal, values = pop_layers2@data@values,  title = "Score")
-    
-    if (input$add_varos){
+    if (input$add_varos == FALSE){
+      leafletProxy("visplot") %>%
+        clearShapes() %>%
+        clearControls() %>%
+        clearMarkers() %>%
+        addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
+        addLegend(pal = pal, values = pop_layers2@data@values,  title = "Score")
+    } else {
       req(input$var_os)
       poi <- osmdata_sp(add_osm_feature(opq = opq(bbox = c(8.35768, 47.15944,8.984941,47.694472)), 
                                              key = 'amenity', value = input$var_os))$osm_points
