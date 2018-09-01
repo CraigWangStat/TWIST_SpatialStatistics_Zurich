@@ -1,14 +1,10 @@
 library(shinydashboard)
-library(shiny)
 library(leaflet)
-library(ggplot2)
-library(maptools)
-library(raster)
-library(osmdata)
 library(fmsb)
-library(rgdal)
 # server ------------------------------------------------------------------
 load("./data/Criteria_per_Cell.RData")
+load("./data/score_layer.RData") # project raster layer
+load("./data/osm_data.RData") # OSM data
 source("helpers.R")
 
 # Define server logic required to draw a histogram
@@ -35,14 +31,13 @@ function(input, output, session) {
   output$out_var_os <- renderUI({
     if (input$add_varos){
       selectInput("var_os", label = "Points of Interest",
-                  choices = c("bar","kindergarten","nightclub","cafe","restaurant","school",
-                              "bus_station","atm"), selected = "bar")} else {}
+                  choices = c("bar","kindergarten","nightclub","cafe","library","vending_machine",
+                              "restaurant","theatre","car_sharing","atm"), selected = "bar")} else {}
   })
   
   output$visplot <- renderLeaflet(leaflet() %>%
                                   addProviderTiles(providers$OpenStreetMap.CH) %>%
-                                  setView(8.539685, 47.378030, zoom = 11))
-                             
+                                  setView(8.597183, 47.424681, zoom = 11))
                              
   observe({
     user <- c(table(base::cut(input$var_age, breaks = c(-Inf, 6, 15, 19, 24, 44, 64, 79, Inf))), # age
@@ -51,41 +46,29 @@ function(input, output, session) {
               sapply(c("ht_per","widl_per","handel_per","finanz_per","freiedl_per",
                        "gewerbe_per","gesundheit_per","bau_per","sonstdl_per","inform_per",    
                        "unterricht_per","verkehr_per","uebrige_per"), function(x) x == input$var_work)) # work
-    if(input$var_child){user[1:2] <- 0.5} 
+    if(input$var_child){user[1:2] <- 0.5} # child
     
-    dat$score <- percentile(calc_score(dat[,3:27], as.vector(user)))
-    
-    coordinates(dat) <- ~ ha_x + ha_y
-    # coerce to SpatialPixelsDataFrame
-    gridded(dat) <- TRUE
-    r <- raster(dat, layer=26)
-    #define crs & projection, set to swiss projection
-    crs(r) <- "+init=epsg:2056" 
-
-    #transform to WGS84
-    pop_layers2 <- projectRaster(r, crs="+init=epsg:4326 +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +units=m +no_defs")
-    
-    pal <-  colorNumeric("OrRd", pop_layers2@data@values, na.color = "transparent")
+    score <- percentile(calc_score(dat[,3:27], as.vector(user))) # compute score
+    score_layer@data@values <- score[score_layer@data@values] # assign scores to raster
+    pal <-  colorNumeric("OrRd", score_layer@data@values, na.color = "transparent") # get colors
     
     if (input$add_varos == FALSE){
       leafletProxy("visplot") %>%
-        clearShapes() %>%
-        clearControls() %>%
-        clearMarkers() %>%
-        addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
-        addLegend(pal = pal, values = pop_layers2@data@values,  title = "Score")
+        clearShapes() %>% clearControls() %>% clearMarkers() %>%
+        addRasterImage(score_layer, color = pal, layerId =  "score", opacity = 0.6) %>% 
+        addLegend(pal = pal, values = score_layer@data@values,  title = "Score")
     } else {
       req(input$var_os)
-      poi <- osmdata_sp(add_osm_feature(opq = opq(bbox = c(8.35768, 47.15944,8.984941,47.694472)), 
-                                             key = 'amenity', value = input$var_os))$osm_points
+     
+      osm_idx <- which(sapply(c("bar","kindergarten","nightclub","cafe","library","vending_machine",
+                                "restaurant","theatre","car_sharing","atm"), function(x) x == input$var_os))
+      
       leafletProxy("visplot") %>%
-        clearShapes() %>%
-        clearControls() %>%
-        clearMarkers() %>%
-        addRasterImage(pop_layers2, color = pal, layerId =  "score", opacity = 0.6) %>% 
-        addMarkers(lng = poi@coords[,1], lat = poi@coords[,2], icon = list(
-          iconUrl = "https://image.flaticon.com/icons/svg/15/15520.svg", iconSize = c(20, 20))) %>%
-        addLegend(pal = pal, values = pop_layers2@data@values,  title = "Score") 
+        clearShapes() %>% clearControls() %>% clearMarkers() %>%
+        addRasterImage(score_layer, color = pal, layerId =  "score", opacity = 0.6) %>% 
+        addMarkers(lng = osm_lists[[osm_idx]]@coords[,1], lat = osm_lists[[osm_idx]]@coords[,2], icon = list(
+          iconUrl = "https://image.flaticon.com/icons/svg/15/15520.svg", iconSize = c(15, 15))) %>%
+        addLegend(pal = pal, values = score_layer@data@values,  title = "Score") 
     }
   })
 }

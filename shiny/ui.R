@@ -1,7 +1,5 @@
 library(shinydashboard)
-library(shiny)
-library(leaflet)
-library(ggplot2)
+library(shinyBS)
 
 load("./data/Criteria_per_Cell.RData")
 # Define UI for application that draws a histogram
@@ -21,7 +19,8 @@ dashboardPage(
   
   dashboardBody(
               h4("Where should you live in canton Zurich?"),
-              h4("Do you want to live in an area where the inhabitants are similar (or maybe dissimilar) to you? With this app, you can find these areas!"),
+              h4("Do you want to live in an area where the inhabitants are similar (or maybe dissimilar) to you? 
+                 With this app, you can find these areas!"),
               fluidRow(
                 column(width = 4,
                        numericInput("var_age", "Age", min = 1, max = 100, value=40, step = 1),
@@ -29,9 +28,10 @@ dashboardPage(
                        selectInput("var_gen", label = "Gender", choices = c("","Female","Male"), selected = ""),
                        selectInput("var_nat", label = "Nationality", 
                                    choices = c("","Swiss","Foreign"), selected = ""),
-                       selectInput("var_work", label = "Working Sector", 
+                       selectInput("var_work", label = "Local Working Sector", 
                                    choices = c("",colnames(dat)[15:25]), selected = ""),
-                       checkboxInput("add_varos","Add points of interest", value = FALSE),
+                       tipify(checkboxInput("add_varos","Add points of interest", value = FALSE),
+                              title = "Data from OpenStreetMap", placement = "top"),
                        uiOutput("out_var_os"),
                        actionButton("contact"," Contact Us", icon = icon("address-card"), 
                                     class = "btn-primary",style = "color: white;",
@@ -50,4 +50,3 @@ dashboardPage(
               )
   )
 )
-
