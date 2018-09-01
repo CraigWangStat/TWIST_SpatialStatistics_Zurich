@@ -1,4 +1,5 @@
 library(shinydashboard)
+library(leaflet)
 library(shinyBS)
 
 load("./data/Criteria_per_Cell.RData")

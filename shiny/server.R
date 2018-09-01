@@ -1,6 +1,8 @@
 library(shinydashboard)
 library(leaflet)
+library(rgdal)
 library(fmsb)
+
 # server ------------------------------------------------------------------
 load("./data/Criteria_per_Cell.RData")
 load("./data/score_layer.RData") # project raster layer
